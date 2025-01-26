@@ -5,7 +5,7 @@ import { auth, db } from "../firebase-config.js"
 
 export const Chat = (props) => {
 
-    const {room} = props // room is basically the person you're texting
+    const { room, setRoom } = props; // Destructure the `setRoom` function from props // room is basically the person you're texting
     const [newMessage, setNewMessage] = useState("")
     const messagesRef = collection(db, "messages");
     const [message, setMessages] = useState([]);
@@ -42,10 +42,15 @@ export const Chat = (props) => {
         setNewMessage("")
     };
 
+    const handleGoBack = () => {
+        setRoom(null); // Reset the room state to null (or navigate to another page)
+      };
+
     return (
 
         <div className="chat"> 
-            <div className="header"> <h1> Welcome to {room} </h1> </div>
+            <div className="header"> <h1> Welcome to {room} </h1> 
+        </div>
 
             <div className="messages"> 
                 {message.map((message) => (
@@ -63,7 +68,12 @@ export const Chat = (props) => {
             value={newMessage}
             />
             <button type="submit" className="send-button"> Send </button>
+
+        
         </form>
+        <button onClick={handleGoBack} className="go-back-button">
+          Go Back
+        </button>
      </div>
 
     );

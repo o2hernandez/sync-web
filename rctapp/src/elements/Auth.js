@@ -22,7 +22,7 @@ export const Auth = (props) => {
             // sign in button for auth page
     return ( 
      <div className="auth">
-         <p> Sign In Bitch </p>   
+         <p> Sign In </p>   
          <button onClick={signInWithGoogle}> Sign in with Google </button>
     </div>
     );
